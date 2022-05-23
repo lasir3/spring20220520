@@ -20,9 +20,8 @@ public class BoardService {
 	@Autowired
 	private ReplyMapper replyMapper;
 	
-	public List<BoardDto> listBoard() {
-		// TODO Auto-generated method stub
-		return mapper.selectBoardAll();
+	public List<BoardDto> listBoard(String type, String keyword) {
+		return mapper.selectBoardAll(type, "%" + keyword + "%");
 	}
 
 	public boolean insertBoard(BoardDto board) {
