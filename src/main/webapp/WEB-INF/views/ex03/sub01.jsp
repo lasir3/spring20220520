@@ -104,6 +104,52 @@
 					data : dataString
 				});
 			});
+			
+			$("#button14").click(function(e){
+				$.ajax({
+					url : "/spr2/ex03/sub12",
+					type : "post",
+					success : function(data) {
+						console.log("요청 성공!!!");
+						console.log("받은 데이터", data);
+					}
+				});
+			});
+			
+			$("#button15").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub13",
+					type : "get",
+					success : function(lotto) {
+						// console.log(data);
+						$("#result1").text(lotto);
+					}
+				});
+			});
+			
+			$("#button16").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub14",
+					type : "get",
+					success : function(book) {
+						//console.log(book);
+						//console.log(book.title);
+						//console.log(book.writer);
+						$("#result2").text(book.title);
+						$("#result3").text(book.writer);
+					}
+				});
+			});
+			
+			$("#button17").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub15",
+					type : "get",
+					success : function(map) {
+						console.log(map);
+					}
+				});
+			});
 		});
 	</script>
 
@@ -169,6 +215,7 @@
 		<button id="button12">ajax 데이터 전송</button>
 	</form>
 	<hr />
+	
 	<%-- #button13이 클릭되면 --%>
 	<%-- /spr2/ex03/sub11로 post 방식 ajax 요청 전송 (title, writer 전송) --%>
 	<form action="/spr2/ex03/sub11" id="form2" method="post">
@@ -177,5 +224,32 @@
 		<button id="button13">ajax 데이터 전송2</button>
 	</form>
 	
+	<%-- #button14이 클릭되면 --%>
+	<%-- /spr2/ex03/sub12로 post 방식 ajax 요청 전송 (title, writer 전송) --%>
+	<form action="/spr2/ex03/sub11" id="form2" method="post">
+		title : <input type="text" name="title" /> <br />
+		writer : <input type="text" name="writer" /> <br />
+		<button id="button13">ajax 데이터 전송3</button>
+	</form>
+	
+	<hr />
+	
+	<p>응답 처리 하기 </p>
+	
+	<%-- url : /spr2/ex03/sub12, type : post,  --%>
+	<button id="button14">응답처리1</button>
+	
+	<br />
+	
+	
+	<button id="button15">로또번호 받기</button>
+	<p>받은 번호 : <span id="result1"></span></p>
+	
+	<button id="button16">json 데이터 받기</button>
+	<p>책 제목 : <span id="result2"></span></p>
+	<p>책 저자 : <span id="result3"></span></p>
+	
+	<button id="button17">map to json</button>
+
 </body>
 </html>
