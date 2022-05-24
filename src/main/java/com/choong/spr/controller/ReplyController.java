@@ -50,7 +50,7 @@ public class ReplyController {
 		boolean success = service.deleteReply(dto);
 		
 		if (success) {
-			rttr.addFlashAttribute("messag", "댓글이 삭제되었습니다.");
+			rttr.addFlashAttribute("message", "댓글이 삭제되었습니다.");
 		}
 		
 		rttr.addAttribute("id", dto.getBoardId());

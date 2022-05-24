@@ -55,10 +55,10 @@ public class BoardController {
 	@GetMapping("get")
 	public void get(int id, Model model) {
 		BoardDto dto = service.getBoardById(id);
-		List<ReplyDto> replyList = replyService.getReplyByBoardId(id);
 		model.addAttribute("board", dto);
 		
 		/* ajax로 처리하기 위해 삭제 */
+		// List<ReplyDto> replyList = replyService.getReplyByBoardId(id);
 		// model.addAttribute("replyList", replyList);
 		
 	}
