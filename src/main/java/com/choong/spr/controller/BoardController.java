@@ -29,7 +29,7 @@ public class BoardController {
 	@RequestMapping("list")
 	public void list(@RequestParam(name = "keyword", defaultValue = "") String keyword,
 					 @RequestParam(name = "type", defaultValue = "") String type,
-					 Model model) {
+			         Model model) {
 		List<BoardDto> list = service.listBoard(type, keyword);
 		model.addAttribute("boardList", list);
 	}
@@ -57,7 +57,9 @@ public class BoardController {
 		BoardDto dto = service.getBoardById(id);
 		List<ReplyDto> replyList = replyService.getReplyByBoardId(id);
 		model.addAttribute("board", dto);
-		model.addAttribute("replyList", replyList);
+		
+		/* ajax로 처리하기 위해 삭제 */
+		// model.addAttribute("replyList", replyList);
 		
 	}
 	

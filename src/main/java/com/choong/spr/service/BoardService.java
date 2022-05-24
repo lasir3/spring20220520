@@ -21,6 +21,7 @@ public class BoardService {
 	private ReplyMapper replyMapper;
 	
 	public List<BoardDto> listBoard(String type, String keyword) {
+		// TODO Auto-generated method stub
 		return mapper.selectBoardAll(type, "%" + keyword + "%");
 	}
 

@@ -6,10 +6,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"	integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"	referrerpolicy="no-referrer"></script>
-<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+	integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
+	integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+	referrerpolicy="no-referrer"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	crossorigin="anonymous"></script>
+
 
 <script>
 	$(document).ready(function() {
@@ -59,6 +71,21 @@
 				$("#replyDeleteForm1").submit();
 			}
 		});
+		
+		// 페이지 로딩 후 reply list 가져오는 ajax 요청
+		
+		const data = {boardId : ${board.id}};
+		$.ajax({
+			url : "${appRoot}/reply/list",
+			type : "get",
+			data : data,
+			success : function(list) {
+				console.log("댓글 가져 오기 성공");
+			},
+			error : function() {
+				console.log("댓글 가져오기 실패");
+			}
+		});
 	});
 </script>
 
@@ -85,7 +112,7 @@
 					<input type="hidden" name="id" value="${board.id }" />
 
 					<div>
-						<label class="form-label" for="input1">제목</label> 
+						<label class="form-label" for="input1">제목</label>
 						<input class="form-control" type="text" name="title" required
 							id="input1" value="${board.title }" readonly />
 					</div>
@@ -97,7 +124,7 @@
 					</div>
 
 					<div>
-						<label for="input2" class="form-label">작성일시</label> 
+						<label for="input2" class="form-label">작성일시</label>
 						<input class="form-control" type="datetime-local"
 							value="${board.inserted }" readonly />
 					</div>
@@ -118,7 +145,7 @@
 			<div class="col">
 				<form action="${appRoot }/reply/insert" method="post">
 					<div class="input-group">
-						<input type="hidden" name="boardId" value="${board.id }" /> 
+						<input type="hidden" name="boardId" value="${board.id }" />
 						<input class="form-control" type="text" name="content" required />
 						<button class="btn btn-outline-secondary">
 							<i class="fa-solid fa-comment-dots"></i>
@@ -137,19 +164,22 @@
 			<div class="col">
 				<h3>댓글 ${board.numOfReply } 개</h3>
 
-				<ul class="list-group">
+				<ul id="replyList1" class="list-group">
+					<%-- 
 					<c:forEach items="${replyList }" var="reply">
 						<li class="list-group-item">
 							<div id="replyDisplayContainer${reply.id }">
 								<div class="fw-bold">
-									<i class="fa-solid fa-comment"></i> ${reply.prettyInserted} 
+									<i class="fa-solid fa-comment"></i>
+									${reply.prettyInserted}
 									<span class="reply-edit-toggle-button badge bg-info text-dark"
 										id="replyEditToggleButton${reply.id }"
-										data-reply-id="${reply.id }"> <i
-										class="fa-solid fa-pen-to-square"></i>
-									</span> <span class="reply-delete-button badge bg-danger"
-										data-reply-id="${reply.id }"> <i
-										class="fa-solid fa-trash-can"></i>
+										data-reply-id="${reply.id }">
+										<i class="fa-solid fa-pen-to-square"></i>
+									</span>
+									<span class="reply-delete-button badge bg-danger"
+										data-reply-id="${reply.id }">
+										<i class="fa-solid fa-trash-can"></i>
 									</span>
 								</div>
 								<c:out value="${reply.content }" />
@@ -161,10 +191,10 @@
 								style="display: none;">
 								<form action="${appRoot }/reply/modify" method="post">
 									<div class="input-group">
-										<input type="hidden" name="boardId" value="${board.id }" /> 
-										<input type="hidden" name="id" value="${reply.id }" /> 
-										<input class="form-control" value="${reply.content }" type="text"
-											name="content" required />
+										<input type="hidden" name="boardId" value="${board.id }" />
+										<input type="hidden" name="id" value="${reply.id }" />
+										<input class="form-control" value="${reply.content }"
+											type="text" name="content" required />
 										<button class="btn btn-outline-secondary">
 											<i class="fa-solid fa-comment-dots"></i>
 										</button>
@@ -175,6 +205,7 @@
 
 						</li>
 					</c:forEach>
+					--%>
 				</ul>
 			</div>
 		</div>
@@ -184,7 +215,7 @@
 	<div class="d-none">
 		<form id="replyDeleteForm1" action="${appRoot }/reply/delete"
 			method="post">
-			<input id="replyDeleteInput1" type="text" name="id" /> 
+			<input id="replyDeleteInput1" type="text" name="id" />
 			<input type="text" name="boardId" value="${board.id }" />
 		</form>
 	</div>
