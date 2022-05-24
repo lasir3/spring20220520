@@ -150,6 +150,19 @@
 					}
 				});
 			});
+			
+			$("#button18").click(function() {
+				$.ajax({
+					url : "/spr2/ex03/sub16",
+					type : "get",
+					success : function(data) {
+						console.log(data);
+					},
+					error : function() {
+						console.log("무엇인가 잘못됨.");
+					}
+				});
+			});
 		});
 	</script>
 
@@ -251,5 +264,9 @@
 	
 	<button id="button17">map to json</button>
 
+	<hr />
+	
+	<p>요청이 실패할 경우</p>
+	<button id="button18">잘못된 요청</button>
 </body>
 </html>
