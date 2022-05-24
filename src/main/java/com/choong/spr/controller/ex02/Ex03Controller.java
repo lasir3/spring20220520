@@ -3,6 +3,8 @@ package com.choong.spr.controller.ex02;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -127,5 +129,11 @@ public class Ex03Controller {
 		map.put("address", "lundon");
 		
 		return map;
+	}
+	
+	@GetMapping("sub17")
+	public ResponseEntity<String> method17() {
+		// error 응답
+		return ResponseEntity.status(500).body("internal server error");
 	}
 }
