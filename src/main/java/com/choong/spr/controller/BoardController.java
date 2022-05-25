@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.choong.spr.domain.BoardDto;
-import com.choong.spr.domain.ReplyDto;
 import com.choong.spr.service.BoardService;
-import com.choong.spr.service.ReplyService;
 
 @Controller
 @RequestMapping("board")
@@ -22,9 +20,6 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService service;
-	
-	@Autowired
-	private ReplyService replyService;
 
 	@RequestMapping("list")
 	public void list(@RequestParam(name = "keyword", defaultValue = "") String keyword,
