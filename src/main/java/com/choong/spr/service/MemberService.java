@@ -1,5 +1,7 @@
 package com.choong.spr.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,23 @@ public class MemberService {
 
 	public boolean hasMemberNickName(String nickName) {
 		return mapper.countMemberNickName(nickName) > 0;
+	}
+
+	public List<MemberDto> listMember() {
+		return mapper.selectAllMember();
+	}
+
+	public MemberDto getMemberById(String id) {
+		return mapper.selectMemberById(id);
+	}
+
+	public boolean removeMember(MemberDto dto) {
+		MemberDto member = mapper.selectMemberById(dto.getId());
+		
+		if (member.getPassword().equals(dto.getPassword())) {
+			return mapper.deleteMemberById(dto.getId()) == 1;
+		}
+		return false;
 	}
 
 }
