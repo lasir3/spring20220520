@@ -12,6 +12,11 @@
 </head>
 <body>
 	<my:navBar current="memberList" />
+	<c:if test="${not empty message }">
+		<div class="alert alert-primary">
+			${message }
+		</div>
+	</c:if>
 	<div class="container">
 		<div class="row">
 			<div class="col">

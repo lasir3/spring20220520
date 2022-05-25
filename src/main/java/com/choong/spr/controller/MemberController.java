@@ -104,7 +104,6 @@ public class MemberController {
 			return "redirect:/board/list";
 		} else {
 			rttr.addAttribute("id", dto.getId());
-			rttr.addFlashAttribute("message", "비밀번호가 틀립니다.");
 			return "redirect:/member/get";
 		}
 	}

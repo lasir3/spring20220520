@@ -30,19 +30,19 @@
 
 	<div>
 		아이디 :
-		<input type="text" value="${member.id }" />
+		<input type="text" value="${member.id }" readonly/>
 		<br />
 		암호 :
-		<input type="text" value="${member.password }" />
+		<input type="text" value="${member.password }" readonly/>
 		<br />
 		이메일 :
-		<input type="email" value="${member.email }" />
+		<input type="email" value="${member.email }" readonly/>
 		<br />
 		닉네임 :
-		<input type="text" value="${member.nickName }" />
+		<input type="text" value="${member.nickName }" readonly/>
 		<br />
 		가입일 :
-		<input type="datetime-local" value="${member.inserted }" />
+		<input type="datetime-local" value="${member.inserted }" readonly/>
 		<br />
 	</div>
 
