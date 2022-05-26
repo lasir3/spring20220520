@@ -176,8 +176,8 @@
 	<p>${message }</p>
 	<div>
 		아이디 : <input type="text" value="${member.id }" readonly/> <br />
-		암호 : <input id="pwInputCheck1" type="text" value="${member.password }" /> <br />
-		암호확인 : <input id="pwInputCheck2" type="text" value="${member.password }" /> 
+		암호 : <input id="pwInputCheck1" type="text" value="" /> <br />
+		암호확인 : <input id="pwInputCheck2" type="text" value="" /> 
 		<span id="pwCheckMessage1"></span> <br />
 		이메일 : <input id="emailValue1" name="email" type="email" value="${member.email }" /> 
 		<button disabled id="emailCheckButton1" type="button">이메일 중복확인</button> 
