@@ -173,6 +173,7 @@
 
 <body>
 	<my:navBar></my:navBar>
+	<p>${message }</p>
 	<div>
 		아이디 : <input type="text" value="${member.id }" readonly/> <br />
 		암호 : <input id="pwInputCheck1" type="text" value="${member.password }" /> <br />
@@ -198,7 +199,7 @@
 	 --%>
 
 	<div>
-		<button id="modifyButton1" data-bs-toggle="modal" data-bs-target="#modal2" disable>수정</button>
+		<button id="modifyButton1" data-bs-toggle="modal" data-bs-target="#modal2" disabled>수정</button>
 		<button data-bs-toggle="modal" data-bs-target="#modal1">삭제</button>
 	</div>
 
