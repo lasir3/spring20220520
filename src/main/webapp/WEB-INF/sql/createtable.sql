@@ -38,4 +38,9 @@ WHERE id NOT IN (SELECT memberId FROM Auth));
 
 -- Board 테이블에 Member의 id 참조하는 컬럼추가
 ALTER TABLE Board
-ADD COLUMN memberId VARCHAR(20) NOT NULL REFERENCES Member(id) AFTER body;
+ADD COLUMN memberId VARCHAR(20) NOT NULL DEFAULT 'qwer1' REFERENCES Member(id) AFTER body;
+ALTER TABLE Board
+MODIFY COLUMN memberId VARCHAR(20) NOT NULL;
+
+DESC Board;
+SELECT * FROM Board;
