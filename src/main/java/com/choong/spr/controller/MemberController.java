@@ -125,4 +125,10 @@ public class MemberController {
 		return "redirect:/member/get";
 	}
 	
+	// 로그인 화면
+	@GetMapping("login")
+	public void loginPage() {
+		
+	}
+	
 }
