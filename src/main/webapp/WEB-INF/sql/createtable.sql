@@ -31,6 +31,9 @@ SELECT * FROM Auth;
 INSERT INTO Auth
 VALUES ('admin', 'ROLE_ADMIN');
 
+DELETE FROM Auth
+WHERE role = 'ROLE_ADMIN';
+
 INSERT INTO Auth (memberId, role)
 (SELECT id, 'ROLE_USER' 
 FROM Member 
@@ -44,3 +47,8 @@ MODIFY COLUMN memberId VARCHAR(20) NOT NULL;
 
 DESC Board;
 SELECT * FROM Board;
+
+SELECT b.id, b.title, b.body, b.inserted, m.nickName, COUNT(r.id) numOfReply
+FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
+             LEFT JOIN Member m ON b.memberId = m.id
+WHERE b.id = 24;
