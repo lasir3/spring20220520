@@ -7,7 +7,6 @@
 	<select id="selectBoardAll" resultType="com.choong.spr.domain.BoardDto">
 		SELECT b.id         id,
 			   b.title      title,
-			   b.body       body,
 			   b.inserted   inserted,
 			   m.nickName   nickName,
 			   COUNT(r.id)  numOfReply
@@ -43,6 +42,7 @@
 			   b.title      title,
 			   b.body       body,
 			   b.inserted   inserted,
+			   m.id         memberId,
 			   m.nickName   nickName,
 			   COUNT(r.id)  numOfReply
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id

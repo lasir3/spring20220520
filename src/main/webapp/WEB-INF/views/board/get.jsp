@@ -265,7 +265,7 @@
 					<!-- 작성자명 추가 -->
 					<div>
 						<label for="input3" class="form-label">작성자</label> 
-						<input class="form-control" 
+						<input id="input3" class="form-control" type="text" 
 							value="${board.nickName }" readonly />
 					</div>
 
