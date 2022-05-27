@@ -32,6 +32,7 @@
 						<tr>
 							<th><i class="fa-solid fa-hashtag"></i></th>
 							<th>제목</th>
+							<th>작성자</th>
 							<th><i class="fa-solid fa-calendar"></i></th>
 						</tr>
 					</thead>
@@ -57,6 +58,7 @@
 									</c:if>
 									
 								</td>
+								<td>${board.nickName }</td>  <!-- 작성자명 추가 -->
 								<td>${board.prettyInserted }</td>
 							</tr>
 						</c:forEach>

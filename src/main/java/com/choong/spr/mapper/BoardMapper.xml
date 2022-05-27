@@ -5,8 +5,14 @@
 <mapper namespace="com.choong.spr.mapper.BoardMapper">
 
 	<select id="selectBoardAll" resultType="com.choong.spr.domain.BoardDto">
-		SELECT b.id, b.title, b.inserted, COUNT(r.id) numOfReply
+		SELECT b.id         id,
+			   b.title      title,
+			   b.body       body,
+			   b.inserted   inserted,
+			   m.nickName   nickName,
+			   COUNT(r.id)  numOfReply
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
+					 LEFT JOIN Member m ON b.memberId = m.id
 		
 		<if test="keyword != '%%'">
 			<choose>
@@ -33,8 +39,14 @@
 	</insert>
 	
 	<select id="selectBoardById" resultType="com.choong.spr.domain.BoardDto">
-		SELECT b.id, b.title, b.body, b.inserted, COUNT(r.id) numOfReply
+		SELECT b.id         id,
+			   b.title      title,
+			   b.body       body,
+			   b.inserted   inserted,
+			   m.nickName   nickName,
+			   COUNT(r.id)  numOfReply
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
+					 LEFT JOIN Member m ON b.memberId = m.id
 		WHERE b.id = #{id}
 	</select>
 	

@@ -238,6 +238,8 @@
 				<c:if test="${not empty message }">
 					<div class="alert alert-primary">${message }</div>
 				</c:if>
+				
+				
 
 				<form id="form1" action="${appRoot }/board/modify" method="post">
 					<input type="hidden" name="id" value="${board.id }" />
@@ -258,6 +260,13 @@
 						<label for="input2" class="form-label">작성일시</label> 
 						<input class="form-control" type="datetime-local"
 							value="${board.inserted }" readonly />
+					</div>
+					
+					<!-- 작성자명 추가 -->
+					<div>
+						<label for="input2" class="form-label">작성자</label> 
+						<input class="form-control" 
+							value="${board.nickName }" readonly />
 					</div>
 
 					<button id="modify-submit1" class="btn btn-primary d-none">수정</button>
