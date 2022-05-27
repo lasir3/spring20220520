@@ -7,6 +7,16 @@ CREATE TABLE Member (
     nickName VARCHAR(20) NOT NULL UNIQUE,
     inserted DATETIME NOT NULL DEFAULT NOW()
 );
+DELETE FROM Member;
+
+-- 권한 테이블
+DROP TABLE Auth;
+CREATE TABLE Auth (
+	memberId VARCHAR(20) NOT NULL,
+    role VARCHAR(20) NOT NULL,
+    FOREIGN KEY (memberId) REFERENCES Member(id)
+);
+DELETE FROM Auth;
 
 ALTER TABLE Member
 MODIFY COLUMN email VARCHAR(50) NOT NULL UNIQUE;
@@ -16,3 +26,16 @@ MODIFY COLUMN password VARCHAR(100) NOT NULL;
 
 DESC Member;
 SELECT * FROM Member;
+SELECT * FROM Auth;
+
+INSERT INTO Auth
+VALUES ('admin', 'ROLE_ADMIN');
+
+INSERT INTO Auth (memberId, role)
+(SELECT id, 'ROLE_USER' 
+FROM Member 
+WHERE id NOT IN (SELECT memberId FROM Auth));
+
+-- Board 테이블에 Member의 id 참조하는 컬럼추가
+ALTER TABLE Board
+ADD COLUMN memberId VARCHAR(20) NOT NULL REFERENCES Member(id) AFTER body;

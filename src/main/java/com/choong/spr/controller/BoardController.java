@@ -1,5 +1,6 @@
 package com.choong.spr.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,13 @@ public class BoardController {
 		
 	}
 	
+	// Principal : 권한 정보에 대한 내용 저장
 	@PostMapping("insert")
-	public String insert(BoardDto board, RedirectAttributes rttr) {
+	public String insert(BoardDto board, Principal principal, RedirectAttributes rttr) {
+		System.out.println(principal);
+		System.out.println(principal.getName()); //username
+		
+		board.setMemberId(principal.getName()); // 작성하는 멤버의 id값 불러옴
 		boolean success = service.insertBoard(board);
 		
 		if (success) {
