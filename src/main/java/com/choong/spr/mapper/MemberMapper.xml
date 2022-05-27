@@ -52,6 +52,11 @@
 		WHERE id = #{id}
 	</delete>
 	
+	<delete id="deleteAuthById">
+		DELETE FROM Auth
+		WHERE memberId = #{id}
+	</delete>
+	
 	<update id="updateMember">
 		UPDATE Member
 		SET password = #{password},
@@ -59,4 +64,10 @@
 			nickName = #{nickName}
 		WHERE id = #{id}
 	</update>
+	
+	<!-- 권한 추가 -->
+	<insert id="insertAuth">
+		INSERT INTO Auth (memberId, role)
+		VALUES (#{id}, #{auth})
+	</insert>
 </mapper>
