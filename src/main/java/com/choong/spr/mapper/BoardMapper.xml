@@ -12,7 +12,7 @@
 			   m.nickName   nickName,
 			   COUNT(r.id)  numOfReply
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
-					 LEFT JOIN Member m ON b.memberId = m.id
+					      JOIN Member m ON b.memberId = m.id
 		
 		<if test="keyword != '%%'">
 			<choose>
@@ -46,7 +46,7 @@
 			   m.nickName   nickName,
 			   COUNT(r.id)  numOfReply
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
-					 LEFT JOIN Member m ON b.memberId = m.id
+					      JOIN Member m ON b.memberId = m.id
 		WHERE b.id = #{id}
 	</select>
 	
