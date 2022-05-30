@@ -9,6 +9,8 @@ public class ReplyDto {
 	private int id;
 	private int boardId;
 	private String content;
+	private String memberId;
+	private String nickName;
 	private LocalDateTime inserted;
 
 	public String getPrettyInserted() {

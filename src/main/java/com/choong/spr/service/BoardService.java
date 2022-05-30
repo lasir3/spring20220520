@@ -21,22 +21,18 @@ public class BoardService {
 	private ReplyMapper replyMapper;
 	
 	public List<BoardDto> listBoard(String type, String keyword) {
-		// TODO Auto-generated method stub
 		return mapper.selectBoardAll(type, "%" + keyword + "%");
 	}
 
 	public boolean insertBoard(BoardDto board) {
-//		board.setInserted(LocalDateTime.now());
 		return mapper.insertBoard(board) == 1;
 	}
 
 	public BoardDto getBoardById(int id) {
-		// TODO Auto-generated method stub
 		return mapper.selectBoardById(id);
 	}
 
 	public boolean updateBoard(BoardDto dto) {
-		// TODO Auto-generated method stub
 		return mapper.updateBoard(dto) == 1;
 	}
 

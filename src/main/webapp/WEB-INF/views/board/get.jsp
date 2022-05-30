@@ -60,19 +60,23 @@
 								
 							<div id="replyDisplayContainer\${list[i].id }">
 								<div class="fw-bold">
+									<span class="badge bg-light text-dark bold">
+										<i class="fa-solid fa-user"> \${list[i].nickName}</i>
+									</span>
 									<i class="fa-solid fa-comment"></i> 
-									\${list[i].prettyInserted} 
+									<span>\${list[i].prettyInserted}</span> 
 									<span class="reply-edit-toggle-button badge bg-info text-dark"
 										id="replyEditToggleButton\${list[i].id }"
-										data-reply-id="\${list[i].id }"> <i
-										class="fa-solid fa-pen-to-square"></i>
+										data-reply-id="\${list[i].id }"> 
+										<i class="fa-solid fa-pen-to-square"></i>
 									</span> 
 									<span class="reply-delete-button badge bg-danger"
-										data-reply-id="\${list[i].id }"> <i
-										class="fa-solid fa-trash-can"></i>
+										data-reply-id="\${list[i].id }"> 
+										<i class="fa-solid fa-trash-can"></i>
 									</span>
 								</div>
-								\${list[i].content }
+								
+								<span>\${list[i].content }</span>
 	
 	
 							</div>
@@ -125,6 +129,7 @@
 							},
 							error : function() {
 								console.log("수정 실패");
+								$("#replyMessage1").show().text("댓글을 수정할 수 없습니다.").fadeOut(3000);
 							},
 							complete : function() {
 								console.log("수정 종료");
@@ -171,6 +176,7 @@
 								},
 								error : function() {
 									console.log(replyId + "댓글 삭제 중 문제 발생됨");
+									$("#replyMessage1").show().text("댓글을 삭제할 수 없습니다.").fadeOut(3000);
 								},
 								complete : function() {
 									console.log(replyId + "댓글 삭제 요청 끝");
@@ -211,6 +217,7 @@
 					listReply();
 				},
 				error : function() {
+					$("#replyMessage1").show().text("댓글을 작성할 수 없습니다.").fadeOut(3000);
 					console.log("문제 발생");
 				},
 				complete : function() {
