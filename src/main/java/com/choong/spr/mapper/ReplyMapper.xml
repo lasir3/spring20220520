@@ -13,10 +13,10 @@
 	SELECT r.id        id, 
 	       r.board_id  boardId,
 	       r.content   content,
-	       r.memberId  memberId,
 	       m.nickName  nickName,
-	       r.inserted  inserted
-	FROM Reply r LEFT JOIN Member m ON r.memberId = m.id 
+	       r.inserted  inserted,
+	       IF (m.id = #{memberId}, 1, 0) own
+	FROM Reply r JOIN Member m ON r.memberId = m.id 
 	WHERE board_id = #{boardId}
 	ORDER BY id
 	</select>

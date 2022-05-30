@@ -64,19 +64,15 @@
 										<i class="fa-solid fa-user"> \${list[i].nickName}</i>
 									</span>
 									<i class="fa-solid fa-comment"></i> 
-									<span>\${list[i].prettyInserted}</span> 
-									<span class="reply-edit-toggle-button badge bg-info text-dark"
-										id="replyEditToggleButton\${list[i].id }"
-										data-reply-id="\${list[i].id }"> 
-										<i class="fa-solid fa-pen-to-square"></i>
-									</span> 
-									<span class="reply-delete-button badge bg-danger"
-										data-reply-id="\${list[i].id }"> 
-										<i class="fa-solid fa-trash-can"></i>
+									<span>\${list[i].prettyInserted}</span>
+									
+								    `/* own이 true 일때만 for문 안에 생성 */ + `
+									<span id="modifyButtonWrapper\${list[i].id }">
 									</span>
+									
 								</div>
 								
-								<span>\${list[i].content }</span>
+								<span id="replyContent\${list[i].id }"><span>
 	
 	
 							</div>
@@ -99,6 +95,22 @@
 							
 								`);
 						replyListElement.append(replyElement); // reply list에 각 항목 추가
+						$("#replyContent" + list[i].id).text(list[i].content); // xml 공격방지
+						
+						// own이 true일때만 수정, 삭제 버튼 보이기
+						if(list[i].own) {
+							$("#modifyButtonWrapper" + list[i].id).html(`
+									<span class="reply-edit-toggle-button badge bg-info text-dark"
+										id="replyEditToggleButton\${list[i].id }"
+										data-reply-id="\${list[i].id }">
+										<i class="fa-solid fa-pen-to-square"></i>
+									</span>
+									<span class="reply-delete-button badge bg-danger"
+										data-reply-id="\${list[i].id }">
+										<i class="fa-solid fa-trash-can"></i>
+									</span>
+							`);
+						}
 					}
 					// end of for
 					

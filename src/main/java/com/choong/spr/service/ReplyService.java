@@ -22,7 +22,7 @@ public class ReplyService {
 	}
 
 	public List<ReplyDto> getReplyByBoardId(int boardId) {
-		return mapper.selectAllBoardId(boardId);
+		return mapper.selectAllBoardId(boardId, null);
 	}
 
 	public boolean updateReply(ReplyDto dto, Principal principal) {
@@ -47,6 +47,11 @@ public class ReplyService {
 			// 그렇지 않으면 return false;
 			return false;
 		}
+	}
+
+	public List<ReplyDto> getReplyWithOwnByBoardId(int boardId, String memberId) {
+		
+		return mapper.selectAllBoardId(boardId, memberId);
 	}
 
 }
