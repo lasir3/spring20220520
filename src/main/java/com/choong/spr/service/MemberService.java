@@ -27,6 +27,9 @@ public class MemberService {
 	private ReplyMapper replyMapper;
 	
 	@Autowired
+	private BoardService boardService;
+	
+	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	public boolean addMember(MemberDto member) {
@@ -77,14 +80,12 @@ public class MemberService {
 			// 댓글 삭제
 			replyMapper.deleteByMemberId(dto.getId());
 			
-			// 이 멤버가 쓴 게시글에 달린 다른사람 댓글 삭제
+			// 이 멤버가 쓴 게시글 삭제
 			List<BoardDto> boardList = boardMapper.listByMemberId(dto.getId());
 			for (BoardDto board : boardList) {
-				replyMapper.deleteByBoardId(board.getId());
+				// BoardService에 작성한 Reply 삭제 메소드 제사용
+				boardService.deleteBoard(board.getId());
 			}
-			
-			// 이 멤버가 쓴 게시글 삭제
-			boardMapper.deleteByMemberId(dto.getId());
 			
 			// 권한 테이블 삭제, 멤버 테이블 삭제
 			return mapper.deleteAuthById(dto.getId()) == 1 && mapper.deleteMemberById(dto.getId()) == 1 ;
