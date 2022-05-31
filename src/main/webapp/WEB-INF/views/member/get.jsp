@@ -172,7 +172,7 @@
 </head>
 
 <body>
-	<my:navBar></my:navBar>
+	<my:navBar current="memberInfo"></my:navBar>
 	<p>${message }</p>
 	<div>
 		아이디 : <input type="text" value="${member.id }" readonly/> <br />
