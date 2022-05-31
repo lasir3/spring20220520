@@ -110,4 +110,9 @@ public class MemberService {
 		return false;
 	}
 
+	public boolean changeMemberPw(String id) {
+		String pw = passwordEncoder.encode(id);
+		return mapper.updateMemberPw(id, pw) == 1;
+	}
+
 }

@@ -70,4 +70,10 @@
 		INSERT INTO Auth (memberId, role)
 		VALUES (#{id}, #{auth})
 	</insert>
+	
+	<update id="updateMemberPw">
+		UPDATE Member
+		Set password = #{pw}
+		WHERE id = #{id}
+	</update>
 </mapper>

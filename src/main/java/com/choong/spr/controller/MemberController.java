@@ -174,4 +174,16 @@ public class MemberController {
 		
 	}
 	
+	@PostMapping("initpw")
+	public String initpwPageProcess(String id, RedirectAttributes rttr) {
+		boolean success = service.changeMemberPw(id);
+		if (success) {
+			rttr.addFlashAttribute("message", "비밀번호가 변경되었습니다.");
+		} else {
+			rttr.addFlashAttribute("message", "비밀번호가 변경되지 않았습니다.");
+		}
+		
+		return "redirect:/member/initpw";
+	}
+	
 }

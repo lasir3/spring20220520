@@ -63,7 +63,7 @@
 							href="${memberListUrl }">회원목록</a>
 					</li>
 					<div class="nav-item">
-						<a href="${initPasswordUrl }">비밀번호 초기화</a>
+						<a href="${initPasswordUrl }" class="nav-link">비밀번호 초기화</a>
 					</div>
 				</sec:authorize>
 				

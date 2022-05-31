@@ -28,4 +28,8 @@ public interface MemberMapper {
 
 	int insertAuth(@Param("id") String id, @Param("auth") String string);
 
+	int updateMemberPw(String id);
+
+	int updateMemberPw(@Param("id")String id, @Param("pw")String pw);
+
 }
