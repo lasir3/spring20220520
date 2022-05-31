@@ -9,6 +9,7 @@
 <c:url value="/member/list" var="memberListUrl"></c:url>
 <c:url value="/member/login" var="loginUrl"></c:url>
 <c:url value="/logout" var="logoutUrl"></c:url>
+<c:url value="/member/initpw" var="initPasswordUrl"></c:url>
 
 <%-- 회원정보링크 --%>
 <sec:authorize access="isAuthenticated()">
@@ -61,6 +62,9 @@
 						<a class="nav-link ${current == 'memberList' ? 'active' : '' }"
 							href="${memberListUrl }">회원목록</a>
 					</li>
+					<div class="nav-item">
+						<a href="${initPasswordUrl }">비밀번호 초기화</a>
+					</div>
 				</sec:authorize>
 				
 				<!-- li.nav-item>a.nav-link{로그인} -->

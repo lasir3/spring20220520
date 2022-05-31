@@ -52,3 +52,23 @@ SELECT b.id, b.title, b.body, b.inserted, m.nickName, COUNT(r.id) numOfReply
 FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
              LEFT JOIN Member m ON b.memberId = m.id
 WHERE b.id = 24;
+
+-- Reply 테이블에 memberId 컬럼 추가(Member 테이블 id 컬럼 참조키 제약사항, not null 제약사항 추가)
+DESC Reply;
+SELECT * FROM Reply;
+ALTER TABLE Reply
+ADD COLUMN memberId VARCHAR(20) NOT NULL DEFAULT 'qwer1' REFERENCES Member(id) AFTER content;
+ALTER TABLE Reply
+MODIFY COLUMN memberId VARCHAR(20) NOT NULL;
+
+DESC Member;
+
+SELECT r.id        id, 
+	   r.board_id  boardId,
+	   r.content   content,
+	   r.memberId  memberId,
+	   m.nickName  nickName,
+	   r.inserted  inserted,
+       IF (r.id = 'user1', 'true', 'false') own
+FROM Reply r LEFT JOIN Member m ON r.memberId = m.id 
+ORDER BY id;
