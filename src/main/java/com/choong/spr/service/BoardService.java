@@ -53,15 +53,19 @@ public class BoardService {
 	}
 	
 	@Transactional
-	public boolean insertBoard(BoardDto board, MultipartFile file) {
+	public boolean insertBoard(BoardDto board, MultipartFile[] files) {
 		// 게시글 등록
 		int cnt = mapper.insertBoard(board);
 		
 		// 파일 등록
-		if (file.getSize() > 0) {
-			mapper.insertFile(board.getId(), file.getOriginalFilename());
-			// saveFile(board.getId(), file); // 파일 시스템에 저장
-			saveFileAwsS3(board.getId(), file); // s3에 업로드
+		if (files != null) {
+			for	(MultipartFile file : files) {
+				if (file.getSize() > 0) {
+					mapper.insertFile(board.getId(), file.getOriginalFilename());
+					// saveFile(board.getId(), file); // 파일 시스템에 저장
+					saveFileAwsS3(board.getId(), file); // s3에 업로드
+				}
+			}
 		}
 		
 		return cnt == 1;
@@ -108,7 +112,12 @@ public class BoardService {
 	}
 */
 	public BoardDto getBoardById(int id) {
-		return mapper.selectBoardById(id);
+		BoardDto board = mapper.selectBoardById(id);
+		List<String> fileNames = mapper.selectFileNameByBoard(id);
+		
+		board.setFileName(fileNames);
+		
+		return board;
 	}
 
 	public boolean updateBoard(BoardDto dto) {
@@ -154,7 +163,6 @@ public class BoardService {
 				.build();
 		s3.deleteObject(deleteObjectRequest);
 	}
-
 }
 
 

@@ -286,9 +286,11 @@
 							cols="30" rows="10" readonly>${board.body }</textarea>
 					</div>
 
-					<div>
-						<img src="${imageUrl }/board/${board.id }/${board.fileName }" alt="" />
-					</div>
+					<c:forEach items="${board.fileName }" var="file">
+						<div>
+							<img src="${imageUrl }/board/${board.id }/${file}" alt="" />
+						</div>
+					</c:forEach>
 					
 					<div>
 						<label for="input2" class="form-label">작성일시</label> 

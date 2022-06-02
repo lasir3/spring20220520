@@ -1,6 +1,7 @@
 package com.choong.spr.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.Data;
 
@@ -12,7 +13,7 @@ public class BoardDto {
 	private String body;
 	private String memberId;
 	private String nickName;
-	private String fileName;
+	private List<String> fileName;
 	private LocalDateTime inserted;
 	private int numOfReply;
 	
