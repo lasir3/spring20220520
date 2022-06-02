@@ -47,7 +47,7 @@ public class BoardService {
 		this.s3 = S3Client.builder().region(region).build();
 	}
 	
-	@PreDestroy // 
+	@PreDestroy 
 	public void destroy() {
 		this.s3.close();
 	}
