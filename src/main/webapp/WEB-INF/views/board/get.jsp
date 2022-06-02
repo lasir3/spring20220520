@@ -287,6 +287,10 @@
 					</div>
 
 					<div>
+						<img src="file:///C:/imgtmp/board/${board.id }/${board.fileName }" alt="" />
+					</div>
+					
+					<div>
 						<label for="input2" class="form-label">작성일시</label> 
 						<input class="form-control" type="datetime-local"
 							value="${board.inserted }" readonly />

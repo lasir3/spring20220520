@@ -12,6 +12,7 @@ public class BoardDto {
 	private String body;
 	private String memberId;
 	private String nickName;
+	private String fileName;
 	private LocalDateTime inserted;
 	private int numOfReply;
 	

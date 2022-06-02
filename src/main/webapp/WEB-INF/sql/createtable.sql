@@ -72,3 +72,11 @@ SELECT r.id        id,
        IF (r.id = 'user1', 'true', 'false') own
 FROM Reply r LEFT JOIN Member m ON r.memberId = m.id 
 ORDER BY id;
+
+-- Board에 fileName 컬럼 추가??? 그러지말고 파일 테이블을 만들자(중복, Null 최소화)
+
+CREATE TABLE File (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	boardId INT NOT NULL REFERENCES Board(id),
+	fileName VARCHAR(255) NOT NULL
+);
