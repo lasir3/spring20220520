@@ -127,7 +127,7 @@ public class BoardService {
 	@Transactional
 	public boolean deleteBoard(int id) {
 		// 파일 목록 읽기
-		String fileName = mapper.selectFileByBoardId(id);
+		List<String> fileList = mapper.selectFileNameByBoard(id);
 		
 		/*
 		// 실제 파일/폴더 삭제
@@ -143,7 +143,10 @@ public class BoardService {
 		}
 		*/
 		// s3에서 지우기
-		deleteFromAwsS3(id, fileName);
+		// 여러파일이 있는 게시물 삭제
+		for (String fileName : fileList) {
+			deleteFromAwsS3(id, fileName);
+		}
 		
 		// 파일테이블 삭제
 		mapper.deleteFileByBoardId(id);
