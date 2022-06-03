@@ -20,6 +20,8 @@
 			$("#textarea1").removeAttr("readonly");
 			$("#modify-submit1").removeClass("d-none");
 			$("#delete-submit1").removeClass("d-none");
+			$("#addFileInputContainer1").removeClass("d-none");
+			$(".removeFileCheckbox").removeClass("d-none");
 		});
 
 		$("#delete-submit1").click(function(e) {
@@ -271,8 +273,8 @@
 				</c:if>
 				
 				
-
-				<form id="form1" action="${appRoot }/board/modify" method="post">
+				<!-- 여러파일 업로드시 form에 multipart/form-date 추가 -->
+				<form id="form1" action="${appRoot }/board/modify" method="post" enctype="multipart/form-date">
 					<input type="hidden" name="id" value="${board.id }" />
 
 					<div>
@@ -293,10 +295,25 @@
 						String encodedFileName = URLEncoder.encode(file, "utf-8");
 						pageContext.setAttribute("encodedFileName", encodedFileName);
 						%>
-						<div>
-							<img src="${imageUrl }/board/${board.id }/${encodedFileName }" alt="" />
+						<div class="row">
+							<div class="col-1">
+								<div class="d-none removeFileCheckbox">
+									삭제 <br />
+									<input type="checkbox" name="removeFileList" value="${file }" />
+								</div>
+							</div>
+							<div class="col-11">
+								<div>
+									<img class="img-fluid" src="${imageUrl }/board/${board.id }/${encodedFileName }" alt="" />
+								</div>
+							</div>
 						</div>
 					</c:forEach>
+					
+					<div id="addFileInputContainer1" class="d-none">
+						파일 추가 :
+						<input type="file" multiple="multiple" name="addFileList" />
+					</div>
 					
 					<div>
 						<label for="input2" class="form-label">작성일시</label> 

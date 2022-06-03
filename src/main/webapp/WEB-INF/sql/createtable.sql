@@ -80,3 +80,8 @@ CREATE TABLE File (
 	boardId INT NOT NULL REFERENCES Board(id),
 	fileName VARCHAR(255) NOT NULL
 );
+
+DESC File;
+SELECT * FROM File;
+DELETE FROM Board
+WHERE id = '48';

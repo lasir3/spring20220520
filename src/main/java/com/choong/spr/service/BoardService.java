@@ -58,17 +58,22 @@ public class BoardService {
 		int cnt = mapper.insertBoard(board);
 		
 		// 파일 등록
+		addFiles(board.getId(), files);
+		
+		return cnt == 1;
+	}
+
+	// 파일 등록 메소드 추출
+	public void addFiles(int id, MultipartFile[] files) {
 		if (files != null) {
 			for	(MultipartFile file : files) {
 				if (file.getSize() > 0) {
-					mapper.insertFile(board.getId(), file.getOriginalFilename());
+					mapper.insertFile(id, file.getOriginalFilename());
 					// saveFile(board.getId(), file); // 파일 시스템에 저장
-					saveFileAwsS3(board.getId(), file); // s3에 업로드
+					saveFileAwsS3(id, file); // s3에 업로드
 				}
 			}
 		}
-		
-		return cnt == 1;
 	}
 
 	private void saveFileAwsS3(int id, MultipartFile file) {
@@ -120,8 +125,21 @@ public class BoardService {
 		return board;
 	}
 
-	public boolean updateBoard(BoardDto dto) {
-		return mapper.updateBoard(dto) == 1;
+	@Transactional
+	public boolean updateBoard(BoardDto dto, List<String> removeFileList, MultipartFile[] addFileList) {
+		if (removeFileList != null) {
+			// 파일 삭제
+			removeFiles(dto.getId(), removeFileList);
+		}
+		
+		if (addFileList != null) {
+			// File 테이블에 추가된 파일 insert
+			addFiles(dto.getId(), addFileList);
+		}
+		
+		// Board 테이블 update
+		int cnt = mapper.updateBoard(dto);
+		return cnt == 1;
 	}
 
 	@Transactional
@@ -142,6 +160,17 @@ public class BoardService {
 			dir.delete();
 		}
 		*/
+		
+		// 파일 삭제
+		removeFiles(id, fileList);
+		
+		// 댓글테이블 삭제
+		replyMapper.deleteByBoardId(id);
+		
+		return mapper.deleteBoard(id) == 1;
+	}
+
+	public void removeFiles(int id, List<String> fileList) {
 		// s3에서 지우기
 		// 여러파일이 있는 게시물 삭제
 		for (String fileName : fileList) {
@@ -150,11 +179,6 @@ public class BoardService {
 		
 		// 파일테이블 삭제
 		mapper.deleteFileByBoardId(id);
-		
-		// 댓글테이블 삭제
-		replyMapper.deleteByBoardId(id);
-		
-		return mapper.deleteBoard(id) == 1;
 	}
 
 	private void deleteFromAwsS3(int id, String fileName) {
