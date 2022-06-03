@@ -82,7 +82,7 @@ public class BoardController {
 	// 여러파일 업로드 수정, 삭제
 	@PostMapping("modify")
 	public String modify(BoardDto dto,
-			List<String> removeFileList,
+			@RequestParam(name = "removeFileList", required = false) ArrayList<String> removeFileList,
 			MultipartFile[] addFileList,
 			Principal principal,
 			RedirectAttributes rttr) {

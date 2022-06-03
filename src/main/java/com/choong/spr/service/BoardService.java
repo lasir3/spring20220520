@@ -69,7 +69,6 @@ public class BoardService {
 			for	(MultipartFile file : files) {
 				if (file.getSize() > 0) {
 					mapper.insertFile(id, file.getOriginalFilename());
-					// saveFile(board.getId(), file); // 파일 시스템에 저장
 					saveFileAwsS3(id, file); // s3에 업로드
 				}
 			}
@@ -129,7 +128,10 @@ public class BoardService {
 	public boolean updateBoard(BoardDto dto, List<String> removeFileList, MultipartFile[] addFileList) {
 		if (removeFileList != null) {
 			// 파일 삭제
-			removeFiles(dto.getId(), removeFileList);
+			for (String fileName : removeFileList) {
+				deleteFromAwsS3(dto.getId(), fileName);
+				mapper.deleteFileBoardIdAndFileName(dto.getId(), fileName);
+			}
 		}
 		
 		if (addFileList != null) {

@@ -9,9 +9,10 @@
 			   b.title      title,
 			   b.inserted   inserted,
 			   m.nickName   nickName,
-			   COUNT(r.id)  numOfReply
+			   COUNT(r.id)  numOfReply,
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
 					      JOIN Member m ON b.memberId = m.id
+
 		
 		<if test="keyword != '%%'">
 			<choose>
@@ -95,4 +96,10 @@
 		FROM File
 		WHERE boardId = #{boardId}
 	</select>
+	
+	<delete id="deleteFileBoardIdAndFileName">
+		DELETE FROM File
+		WHERE boardId = #{boardId} 
+		  AND fileName = #{fileName}
+	</delete>
 </mapper>

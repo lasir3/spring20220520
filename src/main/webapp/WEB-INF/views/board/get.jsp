@@ -274,7 +274,7 @@
 				
 				
 				<!-- 여러파일 업로드시 form에 multipart/form-date 추가 -->
-				<form id="form1" action="${appRoot }/board/modify" method="post" enctype="multipart/form-date">
+				<form id="form1" action="${appRoot }/board/modify" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="id" value="${board.id }" />
 
 					<div>
@@ -312,7 +312,7 @@
 					
 					<div id="addFileInputContainer1" class="d-none">
 						파일 추가 :
-						<input type="file" multiple="multiple" name="addFileList" />
+						<input type="file" accept="image/*" multiple="multiple" name="addFileList" />
 					</div>
 					
 					<div>
