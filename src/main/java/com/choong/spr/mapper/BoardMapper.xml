@@ -9,10 +9,11 @@
 			   b.title      title,
 			   b.inserted   inserted,
 			   m.nickName   nickName,
-			   COUNT(r.id)  numOfReply,
+			   COUNT(DISTINCT r.id)  numOfReply, <!-- DISTINCT 중복제거 -->
+		       COUNT(f.id) hasFile 
 		FROM Board b LEFT JOIN Reply r ON b.id = r.board_id
 					      JOIN Member m ON b.memberId = m.id
-
+					 LEFT JOIN File f ON b.id = f.boardId
 		
 		<if test="keyword != '%%'">
 			<choose>
