@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <title>Insert title here</title>
 
 <script>
@@ -149,26 +150,53 @@
 <body>
 
 <my:navBar current="signup"></my:navBar>
+	<div class="row justify-content-center">
+			<div class="col-12 col-lg-4">
+				<h1>회원 가입 </h1>
 
-<form id="form1" action="${appRoot}/member/signup" method="post">
-	아이디 : <input type="text" name="id" /> 
-	<button id="checkIdButton1" type="button">아이디 중복확인</button> <!-- type="button"을 통해 submit button 방지 -->
-	<p id="idMessage1"></p>	<br />
-	
-	패스워드 : <input id="passwordInput1" type="text" name="password" /> <br />
-	패스워드확인 : <input id="passwordInput2" type="text" name="passwordConfirm" /> <br />
-	<p id="passwordMessage1"></p> <br />
-	
-	이메일 : <input type="email" name="email" />
-	<button id="checkEmailButton1" type="button">이메일 중복확인</button> <!-- type="button"을 통해 submit button 방지 -->
-	<p id="emailMessage1"></p> <br />
-	
-	닉네임 : <input type="text" name="nickName"/> 
-	<button id="checkNickNameButton1" type="button">닉네임 중복확인</button>
-	<p id="nickNameMessage1"></p> <br />
-	
-	<button id="submitButton1" disabled>회원가입</button>
-</form>
+				<form id="form1" action="${appRoot }/member/signup" method="post">
+					
+					<div class="input-group form-floating mb-3">
+						<input id="idInput1" class="form-control" type="text" name="id" placeholder="id"/> 
+						<button class="btn btn-secondary" id="checkIdButton1" type="button">아이디 중복 확인</button>	
+						<label for="idInput1">Id</label>
+					</div>
+					<div class="form-text" id="idMessage1"></div>
+
+					<label for="passwordInput1" class="form-label">
+					패스워드
+					</label>
+					<input class="form-control" id="passwordInput1" type="text" name="password" />
+					
+					<label for="passwordInput2" class="form-label">
+					패스워드확인
+					</label>
+					<input class="form-control" id="passwordInput2" type="text" name="passwordConfirm" />
+					<div class="form-text" id="passwordMessage1"></div>
+					
+					<label for="emailInput1" class="form-label">
+					이메일
+					</label>
+					<div class="input-group">
+						<input id="emailInput1" class="form-control" type="email" name="email" /> 
+						<button class="btn btn-secondary" id="checkEmailButton1" type="button">이메일 중복 확인</button>
+					</div>
+					<div class="form-text" id="emailMessage1"></div>
+					
+					<label for="nickNameInput1" class="form-label">
+					닉네임
+					</label>
+					<div class="input-group">
+						<input id="nickNameInput1" class="form-control" type="text" name="nickName" /> 
+						<button class="btn btn-secondary" id="checkNickNameButton1" type="button">닉네임 중복 확인</button>
+					</div>
+					<div class="form-text" id="nickNameMessage1"></div>
+					
+					<button class="btn btn-primary" id="submitButton1" disabled>회원가입</button>
+				</form>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

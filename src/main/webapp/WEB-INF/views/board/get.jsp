@@ -1,4 +1,4 @@
-<%@page import="java.net.URLEncoder"%>
+<%@ page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -243,7 +243,7 @@
 	});
 </script>
 
-<title>Insert title here</title>
+<title>Super Board No.${board.id }</title>
 </head>
 <body>
 	<my:navBar></my:navBar>
@@ -273,7 +273,7 @@
 				</c:if>
 				
 				
-				<!-- 여러파일 업로드시 form에 multipart/form-date 추가 -->
+				<!-- 파일이나 이미지를 서버로 전송 form에 multipart/form-date 추가 -->
 				<form id="form1" action="${appRoot }/board/modify" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="id" value="${board.id }" />
 
